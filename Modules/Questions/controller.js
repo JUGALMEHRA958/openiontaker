@@ -6,7 +6,7 @@ async function create(req,res,next){
         
         let newData = await Question.create({title:req.body.title});
         if(newData){
-            return res.send({status:0, message:"Added" , data:newData})
+            return res.send({status:1, message:"Added" , data:newData})
         }
         
     }catch(e){
