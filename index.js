@@ -5,14 +5,19 @@ const path = require('path');
 const app = express();
 require('dotenv').config(); // Import the habits router
 const ejs = require('ejs')
-
-
+const questionRouter = require("./Modules/Questions/routes")
+const bodyParser = require('body-parser');
+// Middleware
+app.use(bodyParser.json());
+app.use(express.json());
 //setting template engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// Middleware
-app.use(express.json());
+//routes
+app.use("/questions",questionRouter)
+
+
 
 //start app function 
 const startApp = ()=>{
@@ -33,4 +38,8 @@ mongoose.connect(dbUrl).then(startApp);
 app.get("/", (req,res,next)=>{
     res.render('home' , {files:[]})
 })
+
+module.exports={
+    app
+}
 
