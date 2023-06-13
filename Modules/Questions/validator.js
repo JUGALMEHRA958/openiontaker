@@ -4,7 +4,7 @@
     if(!req.body.title){
         return res.send({status:1, error:"Body nahi mili"})
     }
-    next();git 
+    next(); 
  }
 
 module.exports={
