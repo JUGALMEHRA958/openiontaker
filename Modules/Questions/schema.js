@@ -4,8 +4,11 @@ const mongoose = require('mongoose');
 const questionSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: true
-  }
+    required: true,
+    unique:true
+  },  
+  isDeleted:{type:Boolean , default:false}
+
 });
 
 // Create the 'question' model
@@ -13,7 +16,7 @@ const Question = mongoose.model('Question', questionSchema);
 
 // Define the 'option' schema
 const optionSchema = new mongoose.Schema({
-  text: {
+  title: {
     type: String,
     required: true
   },
@@ -21,7 +24,14 @@ const optionSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Question',
     required: true
-  }
+  },
+  voteCount: {
+    type: Number,
+    default:0
+  },
+  isDeleted:{type:Boolean , default:false}
+},{
+  timestamps:true
 });
 
 // Create the 'option' model
