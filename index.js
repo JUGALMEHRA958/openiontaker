@@ -6,6 +6,7 @@ const app = express();
 require('dotenv').config(); // Import the habits router
 const ejs = require('ejs')
 const questionRouter = require("./Modules/Questions/routes")
+const optionRouter = require("./Modules/Options/routes")
 const bodyParser = require('body-parser');
 // Middleware
 app.use(bodyParser.json());
@@ -16,6 +17,8 @@ app.set('views', path.join(__dirname, 'views'));
 
 //routes
 app.use("/questions",questionRouter)
+app.use("/options",optionRouter)
+
 
 
 
